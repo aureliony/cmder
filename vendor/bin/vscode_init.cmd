@@ -2,28 +2,28 @@
 
 rem Find root dir
 
-if not defined CMDER_ROOT (
-    for /f "delims=" %%i in ("%~dp0\..\..") do (
-        set "cmder_root=%%~fi"
-    )
-)
+rem if not defined CMDER_ROOT (
+rem     for /f "delims=" %%i in ("%~dp0\..\..") do (
+rem         set "cmder_root=%%~fi"
+rem     )
+rem )
 
-if defined cmder_user_bin (
-    set CMDER_VSCODE_INIT_ARGS=%cmder_user_bin%\vscode_init_args.cmd
-) else (
-    set CMDER_VSCODE_INIT_ARGS=%CMDER_ROOT%\bin\vscode_init_args.cmd
-)
+rem if defined cmder_user_bin (
+rem     set CMDER_VSCODE_INIT_ARGS=%cmder_user_bin%\vscode_init_args.cmd
+rem ) else (
+rem     set CMDER_VSCODE_INIT_ARGS=%CMDER_ROOT%\bin\vscode_init_args.cmd
+rem )
 
-if not exist "%CMDER_VSCODE_INIT_ARGS%" (
-    echo Creating initial "%CMDER_VSCODE_INIT_ARGS%"...
-    copy "%CMDER_ROOT%\vendor\bin\vscode_init_args.cmd.default" "%CMDER_VSCODE_INIT_ARGS%"
-) else (
-    call "%CMDER_VSCODE_INIT_ARGS%"
-)
+rem if not exist "%CMDER_VSCODE_INIT_ARGS%" (
+rem     echo Creating initial "%CMDER_VSCODE_INIT_ARGS%"...
+rem     copy "%CMDER_ROOT%\vendor\bin\vscode_init_args.cmd.default" "%CMDER_VSCODE_INIT_ARGS%"
+rem ) else (
+rem     call "%CMDER_VSCODE_INIT_ARGS%"
+rem )
 
 IF [%1] == [] (
     REM -- manually opened console (Ctrl + Shift + `) --
-    CALL "%~dp0..\init.bat"
+    CALL "%~dp0..\init_fast.bat"
 ) ELSE (
     REM -- task --
     CALL cmd %*
